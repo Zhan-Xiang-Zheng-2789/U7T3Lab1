@@ -14,11 +14,15 @@ public class Digits
      */
     public Digits(int num)
     {
-        int currentNum = num;
-        while (currentNum != 0);
+        digitList = new ArrayList<>();
+        if (num == 0)
         {
-            digitList.add(0, currentNum % 10);
-            currentNum = currentNum / 10;
+            digitList.add(0);
+        }
+        while (num != 0)
+        {
+            digitList.add(0, num % 10);
+            num = num / 10;
         }
     }
 
@@ -34,10 +38,9 @@ public class Digits
      */
     public boolean isStrictlyIncreasing()
     {
-        int pastInt = digitList.get(0);
-        for (int i = 1; i < digitList.size(); i++)
+        for (int i = 0; i < digitList.size()-1; i++)
         {
-            if (digitList.get(i) < pastInt)
+            if (digitList.get(i) >= digitList.get(i+1))
             {
                 return false;
             }
